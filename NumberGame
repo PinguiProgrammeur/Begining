@@ -1,0 +1,72 @@
+
+namespace Projet_1
+{
+    class Class1
+    {
+        static void Main(string[] args)
+        {
+            string choix;
+            Console.WriteLine("Voulez vous faire une nouvelle partie ? Y/N");
+            //Console.ReadKey();
+            choix = Console.ReadLine();
+            while (choix != "Y" & choix != "N")
+            {
+                Console.WriteLine("Merci de taper soit Y soit N :(");
+                choix = Console.ReadLine();
+            }
+                while (choix == "Y")
+                {
+                    if (choix == "Y")
+                    {
+                        int nombre = jouer();
+                        Gagné(nombre);
+                    }
+                    else if (choix == "N")
+                    {
+                        Console.WriteLine("Au revoir");
+                    }
+                    Console.WriteLine("\n Voulez vous faire une autre partie :D ? Y/N");
+                    choix = Console.ReadLine();
+                }
+                
+        }//Fin methode main ----------------------------------------------
+        static int jouer()
+        {
+            int randomNumber = new Random().Next(20) + 1;
+            int numberconvert = read();
+            while (numberconvert != randomNumber)
+            {
+                if (numberconvert > randomNumber)
+                {
+                    Console.WriteLine("C'est moins");
+                }
+                else if (numberconvert < randomNumber)
+                {
+                    Console.WriteLine("C'est plus");
+                }
+                numberconvert = read();  // read() tout seul marche pas
+            }
+            return numberconvert;
+        }//Fin methode jouer ------------------------------------------------------
+        static void Gagné(int nombre)
+        {
+            Console.WriteLine("Vous avez trouvez le nombre " + nombre);
+        }// Fin méthode Gagné-------------------------------------------------------------
+        static int read()
+        {
+            int numberconvert;
+            string number;
+
+            Console.WriteLine("Saisissez un nombre entre 1 et 20");
+            number = Console.ReadLine();
+            while (int.TryParse(number, out numberconvert) == false)
+            {
+                Console.WriteLine("Erreur veuillez rentrer une valeur Numérique");
+                number = Console.ReadLine(); // peut pas redire string devant number on le declaire une fois
+            }
+            return numberconvert;
+
+        }//Fin de methode read-------------------------------------------------------------
+    }
+}
+
